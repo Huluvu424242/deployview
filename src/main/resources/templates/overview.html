@@ -20,34 +20,31 @@
 
     <ion-tabs>
 
-        <div th:each="umgebung : ${allUmgebungen}">
-            <ion-tab th:tab="${umgebung.id}">
-                <ion-nav></ion-nav>
-                <ion-card>
-                    <ion-card-header>
-                        <ion-card-subtitle>DepartmentId</ion-card-subtitle>
-                        <ion-card-title>ArtifactId</ion-card-title>
-                    </ion-card-header>
+        <!--/*/ <th:block th:each="umgebung1 : ${allUmgebungen}"> /*/-->
+        <ion-tab th:tab="${umgebung1.id}">
+            <ion-nav></ion-nav>
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-subtitle>DepartmentId</ion-card-subtitle>
+                    <ion-card-title>ArtifactId</ion-card-title>
+                </ion-card-header>
 
-                    <ion-card-content>
-                        <p th:text="'ArtefaktStatus:, ' + ${name} + '!'"/>
-                        <p th:text="'Umgebunge:, ' + ${umgebung.id} + '!'"/>
-                    </ion-card-content>
-                </ion-card>
-            </ion-tab>
-        </div>
+                <ion-card-content>
+                    <p th:text="'ArtefaktStatus:, ' +${umgebung1.id}+ '!'"/>
+                </ion-card-content>
+            </ion-card>
+        </ion-tab>
+        <!--/*/ </th:block> /*/-->
 
 
         <ion-tab-bar slot="top">
 
-            <!--/*/ <th:block th:each="umgebung : ${allUmgebungen}"> /*/-->
-
-            <ion-tab-button th:tab="${umgebung.id}">
+            <!--/*/ <th:block th:each="umgebung2 : ${allUmgebungen}"> /*/-->
+            <ion-tab-button th:tab="${umgebung2.id}">
                 <ion-icon name="calendar"></ion-icon>
-                <ion-label>Schedule</ion-label>
+                <ion-label th:text="${umgebung2.id}"/>
                 <ion-badge>6</ion-badge>
             </ion-tab-button>
-
             <!--/*/ </th:block> /*/-->
         </ion-tab-bar>
 
