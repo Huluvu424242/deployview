@@ -20,13 +20,16 @@
                   detail="true"
                   lines="full"
                   (click)="goParkDetails(park)">
-            <ion-thumbnail slot="start">
-                <img src="assets/img/thumbs/{{park.image}}">
-            </ion-thumbnail>
-            <ion-label>
-                <h2>{{park.name}}</h2>
-                <p th:text="'Hello, ' + ${name} + '!'"/>
-            </ion-label>
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-subtitle>DepartmentId</ion-card-subtitle>
+                    <ion-card-title>ArtifactId</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+                    <p th:text="'ArtefaktStatus:, ' + ${name} + '!'"/>
+                </ion-card-content>
+            </ion-card>
         </ion-item>
     </ion-list>
 </ion-content>
