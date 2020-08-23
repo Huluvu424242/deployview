@@ -14,7 +14,7 @@ public class EnvironmentConverter implements
         if (environment == null) {
             return null;
         } else {
-            return environment.getValue();
+            return environment.getId();
         }
     }
 

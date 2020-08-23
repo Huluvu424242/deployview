@@ -2,22 +2,20 @@ package com.github.huluvu424242.deployview;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Environment implements Serializable {
 
     @Id
-    protected String value;
+    protected String id;
 
-    public Environment(String value) {
+    public Environment(String id) {
         super();
-        this.value = value;
+        this.id = id;
     }
 
-    public String getValue() {
-        return value;
+    public String getId() {
+        return id;
     }
 }
