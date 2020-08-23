@@ -10,6 +10,7 @@ Overview of currently deployments
 * ionic framework: https://ionicframework.com/resources/articles/what-is-a-ui-component-library
 * @ionic/core in vanilla html: https://www.npmjs.com/package/@ionic/core
 * ionic ui-components: https://ionicframework.com/docs/components
+* Ionic & Spring Boot: https://developer.okta.com/blog/2017/05/17/develop-a-mobile-app-with-ionic-and-spring-boot
 
 ## test start
 * ./mvnw spring-boot:run
