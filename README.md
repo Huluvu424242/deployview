@@ -6,6 +6,7 @@ Overview of currently deployments
 * h2 config https://www.baeldung.com/spring-boot-h2-database
 * jpa rest config https://www.baeldung.com/spring-data-rest-intro
 * jpa data typ converter: https://www.baeldung.com/jpa-attribute-converters
+* jpa queries: https://www.baeldung.com/spring-data-jpa-query
 * ionic framework: https://ionicframework.com/resources/articles/what-is-a-ui-component-library
 * @ionic/core in vanilla html: https://www.npmjs.com/package/@ionic/core
 * ionic ui-components: https://ionicframework.com/docs/components
