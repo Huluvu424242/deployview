@@ -18,15 +18,15 @@
 
 <ion-content>
 
-    <ion-tabs>
+    <ion-tabs *ngFor="let park of parkData"
+              detail="true"
+              lines="full"
+              (click)="goParkDetails(park)">
 
         <ion-tab tab="tab-schedule">
             <ion-nav></ion-nav>
             <ion-list>
-                <ion-item *ngFor="let park of parkData"
-                          detail="true"
-                          lines="full"
-                          (click)="goParkDetails(park)">
+                <ion-item>
                     <ion-card>
                         <ion-card-header>
                             <ion-card-subtitle>DepartmentId</ion-card-subtitle>
