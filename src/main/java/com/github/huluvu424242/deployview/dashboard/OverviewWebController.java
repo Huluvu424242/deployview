@@ -1,4 +1,4 @@
-package com.github.huluvu424242.deployview;
+package com.github.huluvu424242.deployview.dashboard;
 
 
 import org.springframework.stereotype.Controller;
