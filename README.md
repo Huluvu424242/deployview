@@ -16,6 +16,7 @@ Overview of currently deployments
 -> obacht es lässt sich nicht mit Ctrl-C restlos killen, -> TaskManager nutzen, scheint ne Neuerung in spring-boot zu sein
 
 ## test urls
+* Dashboard: http://localhost:8080/overview
 * h2 console:  http://localhost:9000/h2-console/
 * health check: http://localhost:9000/health/
 * app profile info: http://localhost:9000/profile
