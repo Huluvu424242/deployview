@@ -11,6 +11,7 @@ Overview of currently deployments
 * @ionic/core in vanilla html: https://www.npmjs.com/package/@ionic/core
 * ionic ui-components: https://ionicframework.com/docs/components
 * Ionic & Spring Boot: https://developer.okta.com/blog/2017/05/17/develop-a-mobile-app-with-ionic-and-spring-boot
+* Thymeleaf Übersicht: https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html
 
 ## test start
 * ./mvnw spring-boot:run
