@@ -1,30 +1,33 @@
-package com.github.huluvu424242.deployview;
+package com.github.huluvu424242.deployview.restapi;
 
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name = "artifacts")
+@Entity(name = "artifact")
 public class Artifact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected long id;
 
-    protected String environmentId;
+    @Convert(converter = UmgebungConverter.class)
+    protected Umgebung umgebung;
+
     protected String departmentId;
-    protected String artifactId;
+    protected String name;
     protected String deploymentStatus;
     protected String deploymentNotice;
 
 
-    public String getEnvironmentId() {
-        return environmentId;
+    public Umgebung getUmgebung() {
+        return umgebung;
     }
 
-    public void setEnvironmentId(String environmentId) {
-        this.environmentId = environmentId;
+    public void setUmgebung(Umgebung umgebung) {
+        this.umgebung = umgebung;
     }
 
     public String getDepartmentId() {
@@ -35,12 +38,12 @@ public class Artifact {
         this.departmentId = departmentId;
     }
 
-    public String getArtifactId() {
-        return artifactId;
+    public String getName() {
+        return name;
     }
 
-    public void setArtifactId(String artifactId) {
-        this.artifactId = artifactId;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDeploymentStatus() {

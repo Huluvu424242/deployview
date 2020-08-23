@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Status Übersicht bekannter Artefakte</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" rel="stylesheet">
+</head>
+<body>
+
+
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Status Übersicht bekannter Artefakte</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-tabs>
+
+        <!--/*/ <th:block th:each="umgebung1 : ${allUmgebungen}"> /*/-->
+        <ion-tab th:tab="${umgebung1.id}">
+            <ion-nav></ion-nav>
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-subtitle>DepartmentId</ion-card-subtitle>
+                    <ion-card-title>ArtifactId</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+                    <p th:text="'ArtefaktStatus:, ' +${umgebung1.id}+ '!'"/>
+                </ion-card-content>
+            </ion-card>
+        </ion-tab>
+        <!--/*/ </th:block> /*/-->
+
+
+        <ion-tab-bar slot="top">
+
+            <!--/*/ <th:block th:each="umgebung2 : ${allUmgebungen}"> /*/-->
+            <ion-tab-button th:tab="${umgebung2.id}">
+                <ion-icon name="calendar"></ion-icon>
+                <ion-label th:text="${umgebung2.id}"/>
+                <ion-badge>6</ion-badge>
+            </ion-tab-button>
+            <!--/*/ </th:block> /*/-->
+        </ion-tab-bar>
+
+    </ion-tabs>
+</ion-content>
+
+
+</body>
+</html>

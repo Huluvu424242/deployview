@@ -4,11 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DeployOverviewApplication {
+public class DeployViewApplication {
 
 	public static void main(String[] args) {
-		System.setProperty("spring.devtools.restart.enabled", "false");
-		SpringApplication.run(DeployOverviewApplication.class, args);
+// Benötigt Entwickler wenn der Restart nervt
+//		System.setProperty("spring.devtools.restart.enabled", "false");
+		SpringApplication.run(DeployViewApplication.class, args);
 	}
 
 }
