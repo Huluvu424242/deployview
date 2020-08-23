@@ -13,4 +13,9 @@ INSERT INTO artifacts (id, environment_id, department_id, artifact_id, deploymen
   (0, 'PROD', 'cms', 'site','WORKING', ' '),
   (1, 'DEV', 'cms', 'app', 'DEPLOYMENT','update ssh libs'),
   (2, 'TEST', 'cms', 'database', 'OFFLINE', 'server upgrade'),
-  (3, 'LASTTEST', 'monitoring', 'app', 'WORKING', ' ');
+  (3, 'LASTTEST', 'monitoring', 'app', 'WORKING', ' '),
+  (4, 'PROD', 'cms', 'site','WORKING', ' '),
+  (5, 'DEV', 'cms', 'app', 'DEPLOYMENT','update ssh libs'),
+  (6, 'TEST', 'cms', 'database', 'OFFLINE', 'server upgrade'),
+  (7, 'LASTTEST', 'monitoring', 'app', 'WORKING', ' ');
+
