@@ -1,4 +1,4 @@
-package com.github.huluvu424242.deployview;
+package com.github.huluvu424242.deployview.restapi;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;

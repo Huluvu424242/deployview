@@ -1,4 +1,4 @@
-package com.github.huluvu424242.deployview;
+package com.github.huluvu424242.deployview.restapi;
 
 import java.io.Serializable;
 import javax.persistence.Entity;

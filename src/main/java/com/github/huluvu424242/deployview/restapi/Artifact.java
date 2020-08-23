@@ -1,4 +1,4 @@
-package com.github.huluvu424242.deployview;
+package com.github.huluvu424242.deployview.restapi;
 
 import javax.persistence.Convert;
 import javax.persistence.Entity;
