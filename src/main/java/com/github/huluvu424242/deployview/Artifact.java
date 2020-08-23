@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name = "artifacts")
+@Entity(name = "artifact")
 public class Artifact {
 
     @Id
@@ -17,7 +17,7 @@ public class Artifact {
     protected Umgebung umgebung;
 
     protected String departmentId;
-    protected String artifactId;
+    protected String name;
     protected String deploymentStatus;
     protected String deploymentNotice;
 
@@ -38,12 +38,12 @@ public class Artifact {
         this.departmentId = departmentId;
     }
 
-    public String getArtifactId() {
-        return artifactId;
+    public String getName() {
+        return name;
     }
 
-    public void setArtifactId(String artifactId) {
-        this.artifactId = artifactId;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDeploymentStatus() {
