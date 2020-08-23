@@ -20,4 +20,4 @@ Overview of currently deployments
 * health check: http://localhost:9000/health/
 * app profile info: http://localhost:9000/profile
 * list all artifacts: http://localhost:9000/artifacts
-* list of selected artifacts: http://localhost:9000/artifacts/search/findByArtifactId?artifactId=app
+* list of selected artifacts: http://localhost:9000/artifacts/search/findByNamed?name=app
