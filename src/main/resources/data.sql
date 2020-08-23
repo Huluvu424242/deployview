@@ -1,15 +1,16 @@
+DROP TABLE IF EXISTS artifacts;
 
-CREATE TABLE deployments (
-  id INT AUTO_INCREMENT  PRIMARY KEY,
-  envirnoment_id VARCHAR(250) NOT NULL,
+CREATE TABLE artifacts (
+  id INT PRIMARY KEY,
+  environment_id VARCHAR(250) NOT NULL,
   department_id VARCHAR(250) NOT NULL,
   artifact_id VARCHAR(250) NOT NULL,
-  status VARCHAR(250) NOT NULL,
-  notice VARCHAR(250) NOT NULL
+  deployment_status VARCHAR(250) NOT NULL,
+  deployment_notice VARCHAR(250) NOT NULL
 );
 
-INSERT INTO deployments (envirnoment_id, department_id, artifact_id, status, notice) VALUES
-  ('PROD', 'cms', 'site','WORKING', ' '),
-  ('DEV', 'cms', 'app', 'DEPLOYMENT','update ssh libs'),
-  ('TEST', 'cms', 'database', 'OFFLINE', 'server upgrade'),
-  ('LASTTEST', 'monitoring', 'app', 'WORKING', ' ');
+INSERT INTO artifacts (id, environment_id, department_id, artifact_id, deployment_status, deployment_notice) VALUES
+  (0, 'PROD', 'cms', 'site','WORKING', ' '),
+  (1, 'DEV', 'cms', 'app', 'DEPLOYMENT','update ssh libs'),
+  (2, 'TEST', 'cms', 'database', 'OFFLINE', 'server upgrade'),
+  (3, 'LASTTEST', 'monitoring', 'app', 'WORKING', ' ');
