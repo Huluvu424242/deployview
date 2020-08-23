@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class OverviewController {
+public class OverviewWebController {
 
     @GetMapping("/overview")
     public String greeting(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
