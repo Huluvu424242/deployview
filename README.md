@@ -6,3 +6,10 @@ Overview of currently deployments
 * h2 config https://www.baeldung.com/spring-boot-h2-database
 * jpa rest config https://www.baeldung.com/spring-data-rest-intro
 *  
+
+## test urls
+* h2 console:  http://localhost:9000/h2-console/
+* health check: http://localhost:9000/health/
+* app profile info: http://localhost:9000/profile
+* list all artifacts: http://localhost:9000/artifacts
+* list of selected artifacts: http://localhost:9000/artifacts/search/findByArtifactId?artifactId=app
