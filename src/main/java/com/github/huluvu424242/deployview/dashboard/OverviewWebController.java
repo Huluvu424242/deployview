@@ -1,6 +1,7 @@
 package com.github.huluvu424242.deployview.dashboard;
 
 
+import com.github.huluvu424242.deployview.restapi.Artifact;
 import com.github.huluvu424242.deployview.restapi.Umgebung;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +15,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class OverviewWebController {
 
     @Autowired
-    protected UmgebungsService umgebungsService;
+    protected DashboardService dashboardService;
 
     @ModelAttribute("allUmgebungen")
     public List<Umgebung> populateUmgebungen() {
-        return this.umgebungsService.findAll();
+        return this.dashboardService.listUmgebungen();
     }
 
+    @ModelAttribute("allArtifacts")
+    public Iterable<Artifact> populateArtifacts() {
+        return this.dashboardService.listArtifacts();
+    }
+
+
     @GetMapping("/overview")
-    public String greeting(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
-//        model.addAttribute("name", name);
+    public String overview(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
         return "overview";
     }
 

@@ -23,16 +23,18 @@
         <!--/*/ <th:block th:each="umgebung1 : ${allUmgebungen}"> /*/-->
         <ion-tab th:tab="${umgebung1.id}">
             <ion-nav></ion-nav>
-            <ion-card>
+            <!--/*/ <th:block th:each="artifact : ${allArtifacts}"> /*/-->
+            <ion-card th:if="${artifact.umgebung.id == umgebung1.id}">
                 <ion-card-header>
                     <ion-card-subtitle>DepartmentId</ion-card-subtitle>
-                    <ion-card-title>ArtifactId</ion-card-title>
+                    <ion-card-title th:text="'Artefakt: '+${artifact.name}"/>
                 </ion-card-header>
 
                 <ion-card-content>
-                    <p th:text="'ArtefaktStatus:, ' +${umgebung1.id}+ '!'"/>
+                    <p th:text="'Status: ' +${artifact.deploymentStatus}"/>
                 </ion-card-content>
             </ion-card>
+            <!--/*/ </th:block> /*/-->
         </ion-tab>
         <!--/*/ </th:block> /*/-->
 
