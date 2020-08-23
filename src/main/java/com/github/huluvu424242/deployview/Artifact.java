@@ -1,5 +1,6 @@
 package com.github.huluvu424242.deployview;
 
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,19 +13,21 @@ public class Artifact {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected long id;
 
-    protected String environmentId;
+    @Convert(converter = EnvironmentConverter.class)
+    protected Environment environment;
+
     protected String departmentId;
     protected String artifactId;
     protected String deploymentStatus;
     protected String deploymentNotice;
 
 
-    public String getEnvironmentId() {
-        return environmentId;
+    public Environment getEnvironment() {
+        return environment;
     }
 
-    public void setEnvironmentId(String environmentId) {
-        this.environmentId = environmentId;
+    public void setEnvironment(Environment environment) {
+        this.environment = environment;
     }
 
     public String getDepartmentId() {
