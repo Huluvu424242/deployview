@@ -26,7 +26,7 @@
             <!--/*/ <th:block th:each="artifact : ${allArtifacts}"> /*/-->
             <ion-card th:if="${artifact.umgebung.id == umgebung1.id}">
                 <ion-card-header>
-                    <ion-card-subtitle>DepartmentId</ion-card-subtitle>
+                    <ion-card-subtitle th:text="'Abteilung: '+${artifact.departmentId}"/>
                     <ion-card-title th:text="'Artefakt: '+${artifact.name}"/>
                 </ion-card-header>
 
