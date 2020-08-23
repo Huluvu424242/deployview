@@ -18,63 +18,37 @@
 
 <ion-content>
 
-    <ion-tabs *ngFor="let park of parkData"
-              detail="true"
-              lines="full"
-              (click)="goParkDetails(park)">
+    <ion-tabs>
 
-        <ion-tab tab="tab-schedule">
-            <ion-nav></ion-nav>
-            <ion-list>
-                <ion-item>
-                    <ion-card>
-                        <ion-card-header>
-                            <ion-card-subtitle>DepartmentId</ion-card-subtitle>
-                            <ion-card-title>ArtifactId</ion-card-title>
-                        </ion-card-header>
+        <div th:each="umgebung : ${allUmgebungen}">
+            <ion-tab th:tab="${umgebung.id}">
+                <ion-nav></ion-nav>
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-subtitle>DepartmentId</ion-card-subtitle>
+                        <ion-card-title>ArtifactId</ion-card-title>
+                    </ion-card-header>
 
-                        <ion-card-content>
-                            <p th:text="'ArtefaktStatus:, ' + ${name} + '!'"/>
-                            <p th:text="'Umgebunge:, ' + ${allUmgebungen} + '!'"/>
-                        </ion-card-content>
-                    </ion-card>
-                </ion-item>
-            </ion-list>
-        </ion-tab>
+                    <ion-card-content>
+                        <p th:text="'ArtefaktStatus:, ' + ${name} + '!'"/>
+                        <p th:text="'Umgebunge:, ' + ${umgebung.id} + '!'"/>
+                    </ion-card-content>
+                </ion-card>
+            </ion-tab>
+        </div>
 
-        <ion-tab tab="tab-speaker">
-            <ion-nav></ion-nav>
-        </ion-tab>
-
-        <ion-tab tab="tab-map" component="page-map">
-            <ion-nav></ion-nav>
-        </ion-tab>
-
-        <ion-tab tab="tab-about" component="page-about">
-            <ion-nav></ion-nav>
-        </ion-tab>
 
         <ion-tab-bar slot="top">
-            <ion-tab-button tab="tab-schedule">
+
+            <!--/*/ <th:block th:each="umgebung : ${allUmgebungen}"> /*/-->
+
+            <ion-tab-button th:tab="${umgebung.id}">
                 <ion-icon name="calendar"></ion-icon>
                 <ion-label>Schedule</ion-label>
                 <ion-badge>6</ion-badge>
             </ion-tab-button>
 
-            <ion-tab-button tab="tab-speaker">
-                <ion-icon name="person-circle"></ion-icon>
-                <ion-label>Speakers</ion-label>
-            </ion-tab-button>
-
-            <ion-tab-button tab="tab-map">
-                <ion-icon name="map"></ion-icon>
-                <ion-label>Map</ion-label>
-            </ion-tab-button>
-
-            <ion-tab-button tab="tab-about">
-                <ion-icon name="information-circle"></ion-icon>
-                <ion-label>About</ion-label>
-            </ion-tab-button>
+            <!--/*/ </th:block> /*/-->
         </ion-tab-bar>
 
     </ion-tabs>
