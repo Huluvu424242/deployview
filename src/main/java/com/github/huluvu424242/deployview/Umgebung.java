@@ -5,12 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Environment implements Serializable {
+public class Umgebung implements Serializable {
 
     @Id
     protected String id;
 
-    public Environment(String id) {
+    public Umgebung(String id) {
         super();
         this.id = id;
     }

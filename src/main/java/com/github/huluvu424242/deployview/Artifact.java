@@ -13,8 +13,8 @@ public class Artifact {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected long id;
 
-    @Convert(converter = EnvironmentConverter.class)
-    protected Environment environment;
+    @Convert(converter = UmgebungConverter.class)
+    protected Umgebung umgebung;
 
     protected String departmentId;
     protected String artifactId;
@@ -22,12 +22,12 @@ public class Artifact {
     protected String deploymentNotice;
 
 
-    public Environment getEnvironment() {
-        return environment;
+    public Umgebung getUmgebung() {
+        return umgebung;
     }
 
-    public void setEnvironment(Environment environment) {
-        this.environment = environment;
+    public void setUmgebung(Umgebung umgebung) {
+        this.umgebung = umgebung;
     }
 
     public String getDepartmentId() {
