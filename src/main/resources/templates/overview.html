@@ -41,6 +41,8 @@
 
                             <ion-card-content>
                                 <p th:text="'Status: ' +${artifact.deploymentStatus}"/>
+                                <ion-button shape="round" color="danger"
+                                            th:href="@{/delete/{umgebung}/{department}/{name}(umgebung=${umgebung1.id},department=${artifact.departmentId},name=${artifact.name})}">DELETE</ion-button>
                             </ion-card-content>
                         </ion-card>
                     <!--/*/ </th:block> /*/-->

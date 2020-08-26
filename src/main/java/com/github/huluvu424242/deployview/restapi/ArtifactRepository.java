@@ -8,9 +8,13 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource(collectionResourceRel = "artifacts", path = "artifacts")
 public interface ArtifactRepository extends PagingAndSortingRepository<Artifact, Long> {
-    List<Artifact> findByName(@Param("name") String name);
 
-    @Query(value = "SELECT u.umgebung FROM  artifact u GROUP BY u.umgebung")
+    @Query(value = "SELECT a.id FROM  artifact a WHERE a.umgebung = :umgebung and a.departmentId = :departmentId and a.name = :name")
+    long findByKey(@Param("umgebung") Umgebung umgebung,
+                       @Param("departmentId") String departmentId,
+                       @Param("name") String name);
+
+    @Query(value = "SELECT a.umgebung FROM  artifact a GROUP BY a.umgebung")
     List<Umgebung> findAllUmgebungen();
 
 }

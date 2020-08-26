@@ -22,6 +22,8 @@ public class Artifact {
     protected String deploymentNotice;
 
 
+    public long getId(){ return id;}
+
     public Umgebung getUmgebung() {
         return umgebung;
     }
