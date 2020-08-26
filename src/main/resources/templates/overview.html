@@ -6,6 +6,8 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" rel="stylesheet">
+
+    <link th:href="@{/css/style.css}" rel="stylesheet"></link>
 </head>
 <body>
 
@@ -22,19 +24,28 @@
 
         <!--/*/ <th:block th:each="umgebung1 : ${allUmgebungen}"> /*/-->
         <ion-tab th:tab="${umgebung1.id}">
-            <ion-nav></ion-nav>
-            <!--/*/ <th:block th:each="artifact : ${allArtifacts}"> /*/-->
-            <ion-card th:if="${artifact.umgebung.id == umgebung1.id}">
-                <ion-card-header>
-                    <ion-card-subtitle th:text="'Abteilung: '+${artifact.departmentId}"/>
-                    <ion-card-title th:text="'Artefakt: '+${artifact.name}"/>
-                </ion-card-header>
+            <ion-header translucent>
+                <ion-toolbar>
+                    <ion-title th:text="${umgebung1.id}"/>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content>
 
-                <ion-card-content>
-                    <p th:text="'Status: ' +${artifact.deploymentStatus}"/>
-                </ion-card-content>
-            </ion-card>
-            <!--/*/ </th:block> /*/-->
+                <div class="horizontal-cards">
+                    <!--/*/ <th:block th:each="artifact : ${allArtifacts}"> /*/-->
+                        <ion-card th:if="${artifact.umgebung.id == umgebung1.id}">
+                            <ion-card-header>
+                                <ion-card-subtitle th:text="'Abteilung: '+${artifact.departmentId}"/>
+                                <ion-card-title th:text="'Artefakt: '+${artifact.name}"/>
+                            </ion-card-header>
+
+                            <ion-card-content>
+                                <p th:text="'Status: ' +${artifact.deploymentStatus}"/>
+                            </ion-card-content>
+                        </ion-card>
+                    <!--/*/ </th:block> /*/-->
+                </div>
+            </ion-content>
         </ion-tab>
         <!--/*/ </th:block> /*/-->
 

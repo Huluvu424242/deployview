@@ -15,7 +15,7 @@ INSERT INTO artifact (id, umgebung, department_id, name, deployment_status, depl
   (2, 'TEST', 'cms', 'database', 'OFFLINE', 'server upgrade'),
   (3, 'LASTTEST', 'monitoring', 'app', 'WORKING', ' '),
   (4, 'PROD', 'car', 'site','WORKING', ' '),
-  (5, 'DEV', 'car', 'app', 'DEPLOYMENT','update ssh libs'),
+  (5, 'DEV', 'car', 'site', 'DEPLOYMENT','update ssh libs'),
   (6, 'TEST', 'car', 'database', 'OFFLINE', 'server upgrade'),
   (7, 'LASTTEST', 'office', 'app', 'WORKING', ' ');
 
