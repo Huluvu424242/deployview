@@ -20,16 +20,29 @@
 </head>
 <body>
 <script type="text/javascript">
+    window.mysite = {
+        auswahlen: [],
+        interfaces: []
+    };
     function saveStatus( umgebung, department, artifactname, baseurl ){
         const selectId = umgebung + '.' + department + '.' + artifactname;
         const element =  document.getElementById( selectId);
         const status = element.value;
         console.log('call' + baseurl + '/' + status);
     }
-    window.mysite = {
-        auswahlen: [],
-        interfaces: []
-    };
+    function deleteArtifact( umgebung, department, artifactname ){
+        const apiUrl = '/api/' + umgebung +'/' + department +'/'+ artifactname;
+        console.log('call DELETE' + apiUrl );
+        fetch(apiUrl, {method: 'DELETE'})
+        .then(response => response.status)
+        .then(status => {
+            console.log('Success:', status);
+            location.reload();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
 </script>
 
 <!--<ion-app>-->
@@ -109,9 +122,14 @@
                                  /*]]>*/
                                 </script>
                                         </ion-select>
+<!--                                    <ion-button-->
+<!--                                            shape="round" color="danger"-->
+<!--                                            th:href="@{/delete/{umgebung}/{department}/{name}(umgebung=${umgebung1.id},department=${artifact.departmentId},name=${artifact.name})}">-->
+<!--                                        DELETE-->
+<!--                                    </ion-button>-->
                                     <ion-button
                                             shape="round" color="danger"
-                                            th:href="@{/delete/{umgebung}/{department}/{name}(umgebung=${umgebung1.id},department=${artifact.departmentId},name=${artifact.name})}">
+                                            th:attr="onclick=|deleteArtifact('${umgebung1.id}','${artifact.departmentId}','${artifact.name}')|">
                                         DELETE
                                     </ion-button>
                                     <ion-button
