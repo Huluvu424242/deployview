@@ -20,8 +20,15 @@
 </head>
 <body>
 <script type="text/javascript">
+    function saveStatus( umgebung, department, artifactname, baseurl ){
+        const selectId = umgebung + '.' + department + '.' + artifactname;
+        const element =  document.getElementById( selectId);
+        const status = element.value;
+        console.log('call' + baseurl + '/' + status);
+    }
     window.mysite = {
-        auswahlen: []
+        auswahlen: [],
+        interfaces: []
     };
 </script>
 
@@ -58,26 +65,62 @@
 
                                 <ion-card-content>
                                     <ion-label>Status:</ion-label>
-                                        <ion-select th:id="|${umgebung1.id}.${artifact.departmentId}.${artifact.name}|" th:value="${artifact.deploymentStatus}"
-                                                    ionChange="alert('Hallo')">
+                                        <ion-select th:id="|${umgebung1.id}.${artifact.departmentId}.${artifact.name}|"
+                                                    th:name="|${umgebung1.id}.${artifact.departmentId}.${artifact.name}|"
+                                                    th:value="${artifact.deploymentStatus}"
+                                                    ionChange="alert('Hallo')"
+                                                    onchange="alert('Hallo')"
+                                                    onselectionchanged="alert('Hallo')"
+
+                                        >
                                             <ion-select-option value="DEPLOYMENT">Deployment</ion-select-option>
                                             <ion-select-option value="OFFLINE">Offline</ion-select-option>
                                             <ion-select-option value="WORKING">Working</ion-select-option>
+                                            <script  th:inline="javascript">
+                                 /*<![CDATA[*/
+                                     /*[+
+
+                                     ( function(){
+                                        var customAlertSelect = document.getElementById([[${umgebung1.id}]] +'.' + [[${artifact.departmentId}]] + '.' + [[${artifact.name}]]);
+                                        window.mysite.auswahlen.push([[${umgebung1.id}]] +'.' + [[${artifact.departmentId}]] + '.' + [[${artifact.name}]]);
+
+
+                                        customAlertSelect.ionChange= function(){ alert('Hallo2');}
+                                        customAlertSelect.ionChange!= function(){ alert('Hallo1');}
+
+                                        window.mysite.interfaces.push(customAlertSelect);
+                                        var customAlertOptions = {
+                                          header: 'Pizza Toppings',
+                                          subHeader: 'Select your toppings',
+                                          message: '$1.00 per topping',
+                                          buttons: [{
+                                                text: 'Delete',
+                                                role: 'destructive',
+                                                icon: 'trash',
+                                                handler: () => {
+                                                  console.log('Delete clicked');
+                                                }
+                                          }]
+                                        };
+                                        customAlertSelect.interfaceOptions = customAlertOptions;
+                                        }());
+
+                                     +]*/
+                                 /*]]>*/
+                                </script>
                                         </ion-select>
                                     <ion-button
                                             shape="round" color="danger"
                                             th:href="@{/delete/{umgebung}/{department}/{name}(umgebung=${umgebung1.id},department=${artifact.departmentId},name=${artifact.name})}">
                                         DELETE
                                     </ion-button>
+                                    <ion-button
+                                            shape="round" color="success"
+                                            th:attr="onclick=|saveStatus('${umgebung1.id}','${artifact.departmentId}','${artifact.name}', '@{/save/{umgebung}/{department}/{name}(umgebung=${umgebung1.id},department=${artifact.departmentId},name=${artifact.name})}')|">
+                                        SAVE
+                                    </ion-button>
 
                                 </ion-card-content>
-                                <script  th:inline="javascript">
-                                 /*<![CDATA[*/
-                                     /*[+
-                                        window.mysite.auswahlen.push([[${umgebung1.id}]] +'.' + [[${artifact.departmentId}]] + '.' + [[${artifact.name}]]);
-                                     +]*/
-                                 /*]]>*/
-                                </script>
                             </ion-card>
                             <!--/*/ </th:block> /*/-->
                         </div>
