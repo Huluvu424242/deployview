@@ -56,8 +56,16 @@
     }
 </script>
 
-<!--<ion-app>-->
+<ion-app>
 <!--    <ion-page>-->
+
+        <ion-router>
+            <!--/*/ <th:block th:each="umgebung : ${allUmgebungen}"> /*/-->
+            <ion-route th:attr="url=|/${umgebung.id}|" th:component="${umgebung.id}"/>
+            <!--/*/ </th:block> /*/-->
+        </ion-router>
+
+
         <ion-header>
             <ion-toolbar color="primary">
                 <ion-title>Status Übersicht bekannter Artefakte</ion-title>
@@ -70,6 +78,7 @@
 
                 <!--/*/ <th:block th:each="umgebung1 : ${allUmgebungen}"> /*/-->
                 <ion-tab th:tab="${umgebung1.id}">
+                    <ion-nav></ion-nav>
                     <ion-header translucent>
                         <ion-toolbar>
                             <ion-title th:text="${umgebung1.id}"/>
@@ -164,18 +173,11 @@
                     <!--/*/ </th:block> /*/-->
                 </ion-tab-bar>
 
-<!--                <script type="text/javascript">-->
-<!--                    window.onload = function(){-->
-<!--                        setTimeout(function(){-->
-<!--                            addListeners();-->
-<!--                        }, 2000);-->
-<!--                    }-->
-<!--                </script>-->
             </ion-tabs>
 
         </ion-content>
 <!--    </ion-page>-->
-<!--</ion-app>-->
+</ion-app>
 
 
 </body>
