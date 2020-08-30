@@ -28,7 +28,18 @@
         const selectId = umgebung + '.' + department + '.' + artifactname;
         const element =  document.getElementById( selectId);
         const status = element.value;
-        console.log('call' + baseurl + '/' + status);
+
+        const apiUrl = '/api/' + umgebung +'/' + department +'/'+ artifactname + '/' + status;
+        console.log('call POST' + apiUrl );
+        fetch(apiUrl, {method: 'POST'})
+        .then(response => response.status)
+        .then(status => {
+            console.log('Success:', status);
+            location.reload();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
     function deleteArtifact( umgebung, department, artifactname ){
         const apiUrl = '/api/' + umgebung +'/' + department +'/'+ artifactname;
@@ -122,11 +133,6 @@
                                  /*]]>*/
                                 </script>
                                         </ion-select>
-<!--                                    <ion-button-->
-<!--                                            shape="round" color="danger"-->
-<!--                                            th:href="@{/delete/{umgebung}/{department}/{name}(umgebung=${umgebung1.id},department=${artifact.departmentId},name=${artifact.name})}">-->
-<!--                                        DELETE-->
-<!--                                    </ion-button>-->
                                     <ion-button
                                             shape="round" color="danger"
                                             th:attr="onclick=|deleteArtifact('${umgebung1.id}','${artifact.departmentId}','${artifact.name}')|">
