@@ -59,13 +59,6 @@
 <ion-app>
 <!--    <ion-page>-->
 
-        <ion-router>
-            <!--/*/ <th:block th:each="umgebung : ${allUmgebungen}"> /*/-->
-            <ion-route th:attr="url=|/${umgebung.id}|" th:component="${umgebung.id}"/>
-            <!--/*/ </th:block> /*/-->
-        </ion-router>
-
-
         <ion-header>
             <ion-toolbar color="primary">
                 <ion-title>Status Übersicht bekannter Artefakte</ion-title>
@@ -76,10 +69,18 @@
 
             <ion-tabs>
 
+                <ion-router useHash='false'>
+                    <ion-route component="tabs">
+                        <!--/*/ <th:block th:each="umgebung : ${allUmgebungen}"> /*/-->
+                        <ion-route th:url="|/${umgebung.id}|" th:component="${umgebung.id}"/>
+                        <!--/*/ </th:block> /*/-->
+                    </ion-route>
+                </ion-router>
+
                 <!--/*/ <th:block th:each="umgebung1 : ${allUmgebungen}"> /*/-->
                 <ion-tab th:tab="${umgebung1.id}">
                     <ion-nav></ion-nav>
-                    <ion-header translucent>
+                    <ion-header>
                         <ion-toolbar>
                             <ion-title th:text="${umgebung1.id}"/>
                         </ion-toolbar>
@@ -145,6 +146,7 @@
                                     <ion-button
                                             shape="round" color="danger"
                                             th:attr="onclick=|deleteArtifact('${umgebung1.id}','${artifact.departmentId}','${artifact.name}')|">
+<!--                                            th:href="${umgebung1.id}"-->
                                         DELETE
                                     </ion-button>
                                     <ion-button
@@ -166,6 +168,7 @@
 
                     <!--/*/ <th:block th:each="umgebung2 : ${allUmgebungen}"> /*/-->
                     <ion-tab-button th:tab="${umgebung2.id}">
+<!--                    <ion-tab-button th:tab="${umgebung2.id}" th:attr="href=|${umgebung2.id}|">-->
                         <ion-icon name="calendar"></ion-icon>
                         <ion-label th:text="${umgebung2.id}"/>
                         <ion-badge>6</ion-badge>
