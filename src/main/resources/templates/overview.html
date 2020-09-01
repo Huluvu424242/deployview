@@ -46,6 +46,22 @@
             console.error('Error:', error);
         });
     }
+    function createArtifact( tab ){
+        const umgebung = document.getElementById( tab +'.newUmgebung' ).value;
+        const department = document.getElementById( tab +'.newDepartment' ).value;
+        const artifactname = document.getElementById( tab +'.newArtifactName' ).value;
+        const apiUrl = '/api/' + umgebung +'/' + department +'/'+ artifactname;
+        console.log('PUT ' + apiUrl );
+        fetch(apiUrl, {method: 'PUT'})
+        .then(response => response.status)
+        .then(status => {
+            console.log('Erfolgreich angelegt, http status:', status);
+            location.reload();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
 </script>
 
 <ion-app>
@@ -80,6 +96,31 @@
                     <ion-content>
 
                         <div class="horizontal-cards">
+                            <ion-card>
+                                <ion-card-header>
+                                    <ion-card-subtitle>Anlegen</ion-card-subtitle>
+                                    <ion-card-title>Neues Artefakt</ion-card-title>
+                                </ion-card-header>
+                                <ion-card-content>
+                                    <ion-label>Umgebung:</ion-label>
+                                    <ion-input th:id="|${umgebung1.id}.newUmgebung|"></ion-input>
+
+                                    <ion-label>Abteilung:</ion-label>
+                                    <ion-input th:id="|${umgebung1.id}.newDepartment|"></ion-input>
+
+                                    <ion-label>Artefakt Name:</ion-label>
+                                    <ion-input th:id="|${umgebung1.id}.newArtifactName|"></ion-input>
+                                </ion-card-content>
+                                <ion-button
+                                        shape="round"
+                                        color="success"
+                                        th:attr="onclick=|createArtifact('${umgebung1.id}')|">
+                                    Create
+                                </ion-button>
+
+                            </ion-card>
+
+
                             <!--/*/ <th:block th:each="artifact : ${allArtifacts}"> /*/-->
                             <ion-card th:if="${artifact.umgebung.id == umgebung1.id}">
                                 <ion-card-header>

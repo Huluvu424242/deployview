@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -37,6 +38,20 @@ public class RestApiController {
             artifact.setDeploymentStatus(deploymentStatus);
             artifactRepository.save(artifact);
         }
+    }
+
+    @PutMapping("/api/{umgebung}/{department}/{artifact}")
+    public void createArtifact(
+            @PathVariable(name = "umgebung") String umgebungId,
+            @PathVariable(name = "department") String departmentId,
+            @PathVariable(name = "artifact") String artifactName) {
+        final Artifact artifact = new Artifact();
+        artifact.setUmgebung(new Umgebung(umgebungId));
+        artifact.setDepartmentId(departmentId);
+        artifact.setName(artifactName);
+        artifact.setDeploymentStatus("UNBEKANNT");
+        artifact.setDeploymentNotice(" ");
+        artifactRepository.save(artifact);
     }
 
 }
