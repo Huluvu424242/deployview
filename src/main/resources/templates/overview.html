@@ -9,14 +9,6 @@
 
     <link th:href="@{/css/style.css}" rel="stylesheet"></link>
 
-    <script type="text/javascript">
-
-    function addListeners () {
-        document.querySelector(window.mysite.auswahlen[0]).addEventListener('onchange', function (evt) {
-            console.log('#'+this.value);
-        });
-    }
-</script>
 </head>
 <body>
 <script type="text/javascript">
@@ -34,7 +26,7 @@
         fetch(apiUrl, {method: 'POST'})
         .then(response => response.status)
         .then(status => {
-            console.log('Success:', status);
+            console.log('Erfolgreich gespeichert, http status:', status);
             location.reload();
         })
         .catch((error) => {
@@ -47,7 +39,7 @@
         fetch(apiUrl, {method: 'DELETE'})
         .then(response => response.status)
         .then(status => {
-            console.log('Success:', status);
+            console.log('Erfolgreich gelöscht, http status:', status);
             location.reload();
         })
         .catch((error) => {
@@ -56,8 +48,8 @@
     }
 </script>
 
-<!--<ion-app>-->
-<!--    <ion-page>-->
+<ion-app>
+
         <ion-header>
             <ion-toolbar color="primary">
                 <ion-title>Status Übersicht bekannter Artefakte</ion-title>
@@ -68,9 +60,19 @@
 
             <ion-tabs>
 
+                <ion-router id="myrouter" useHash='false'>
+                    <ion-route-redirect from="/overview/blah" to="/TEST"></ion-route-redirect>
+                    <ion-route component="tabs">
+                        <!--/*/ <th:block th:each="umgebung : ${allUmgebungen}"> /*/-->
+                        <ion-route th:url="|/${umgebung.id}|" th:component="${umgebung.id}"/>
+                        <!--/*/ </th:block> /*/-->
+                    </ion-route>
+                </ion-router>
+
                 <!--/*/ <th:block th:each="umgebung1 : ${allUmgebungen}"> /*/-->
                 <ion-tab th:tab="${umgebung1.id}">
-                    <ion-header translucent>
+                    <ion-nav></ion-nav>
+                    <ion-header>
                         <ion-toolbar>
                             <ion-title th:text="${umgebung1.id}"/>
                         </ion-toolbar>
@@ -92,10 +94,6 @@
                                         <ion-select th:id="|${umgebung1.id}.${artifact.departmentId}.${artifact.name}|"
                                                     th:name="|${umgebung1.id}.${artifact.departmentId}.${artifact.name}|"
                                                     th:value="${artifact.deploymentStatus}"
-                                                    ionChange="alert('Hallo')"
-                                                    onchange="alert('Hallo')"
-                                                    onselectionchanged="alert('Hallo')"
-
                                         >
                                             <ion-select-option value="DEPLOYMENT">Deployment</ion-select-option>
                                             <ion-select-option value="OFFLINE">Offline</ion-select-option>
@@ -105,18 +103,11 @@
                                      /*[+
 
                                      ( function(){
-                                        var customAlertSelect = document.getElementById([[${umgebung1.id}]] +'.' + [[${artifact.departmentId}]] + '.' + [[${artifact.name}]]);
-                                        window.mysite.auswahlen.push([[${umgebung1.id}]] +'.' + [[${artifact.departmentId}]] + '.' + [[${artifact.name}]]);
-
-
-                                        customAlertSelect.ionChange= function(){ alert('Hallo2');}
-                                        customAlertSelect.ionChange!= function(){ alert('Hallo1');}
-
-                                        window.mysite.interfaces.push(customAlertSelect);
-                                        var customAlertOptions = {
-                                          header: 'Pizza Toppings',
-                                          subHeader: 'Select your toppings',
-                                          message: '$1.00 per topping',
+                                        const customAlertSelect = document.getElementById([[${umgebung1.id}]] +'.' + [[${artifact.departmentId}]] + '.' + [[${artifact.name}]]);
+                                        const customAlertOptions = {
+                                          header: 'Artefakt Status',
+                                          subHeader: 'Mögliche Auswahlen',
+                                          message: 'Nur eine Auswahl möglich',
                                           buttons: [{
                                                 text: 'Delete',
                                                 role: 'destructive',
@@ -159,23 +150,16 @@
                     <ion-tab-button th:tab="${umgebung2.id}">
                         <ion-icon name="calendar"></ion-icon>
                         <ion-label th:text="${umgebung2.id}"/>
-                        <ion-badge>6</ion-badge>
+<!--                        <ion-badge>0</ion-badge>-->
                     </ion-tab-button>
                     <!--/*/ </th:block> /*/-->
                 </ion-tab-bar>
 
-<!--                <script type="text/javascript">-->
-<!--                    window.onload = function(){-->
-<!--                        setTimeout(function(){-->
-<!--                            addListeners();-->
-<!--                        }, 2000);-->
-<!--                    }-->
-<!--                </script>-->
             </ion-tabs>
 
         </ion-content>
-<!--    </ion-page>-->
-<!--</ion-app>-->
+
+</ion-app>
 
 
 </body>
