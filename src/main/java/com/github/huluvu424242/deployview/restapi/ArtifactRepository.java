@@ -15,8 +15,8 @@ public interface ArtifactRepository extends CrudRepository<Artifact, Long> {
 //                       @Param("departmentId") String departmentId,
 //                       @Param("name") String name);
 
-    @Query(value = "SELECT a.umgebung FROM  Artifact a GROUP BY a.umgebung")
-    List<Umgebung> findAllUmgebungen();
+//    @Query(value = "SELECT a.umgebung FROM  Artifact a GROUP BY a.umgebung")
+//    List<Umgebung> findAllUmgebungen();
 
 
     Artifact findById(long id);

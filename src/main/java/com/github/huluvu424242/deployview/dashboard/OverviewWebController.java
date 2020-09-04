@@ -3,14 +3,11 @@ package com.github.huluvu424242.deployview.dashboard;
 
 import com.github.huluvu424242.deployview.restapi.Artifact;
 import com.github.huluvu424242.deployview.restapi.ArtifactRepository;
-import com.github.huluvu424242.deployview.restapi.Umgebung;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class OverviewWebController {
@@ -18,16 +15,14 @@ public class OverviewWebController {
     @Autowired
     protected DashboardService dashboardService;
 
-    @Autowired
-    protected ArtifactRepository artifactRepository;
 
-    @PostConstruct
-    public void init() {
-        dashboardService.initRepo();
-    }
+//    @PostConstruct
+//    public void init() {
+//        dashboardService.initRepo();
+//    }
 
     @ModelAttribute("allUmgebungen")
-    public List<Umgebung> populateUmgebungen() {
+    public List<String> populateUmgebungen() {
         return this.dashboardService.listUmgebungen();
     }
 

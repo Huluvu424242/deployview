@@ -1,10 +1,7 @@
 package com.github.huluvu424242.deployview.restapi;
 
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,7 +43,7 @@ public class RestApiController {
             @PathVariable(name = "department") String departmentId,
             @PathVariable(name = "artifact") String artifactName) {
         final Artifact artifact = new Artifact();
-        artifact.setUmgebung(new Umgebung(umgebungId));
+        artifact.setUmgebung(umgebungId);
         artifact.setDepartmentId(departmentId);
         artifact.setName(artifactName);
         artifact.setDeploymentStatus("UNBEKANNT");

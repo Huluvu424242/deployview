@@ -14,8 +14,8 @@ public class Artifact implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
 
-    @Convert(converter = UmgebungConverter.class)
-    protected Umgebung umgebung;
+//    @Convert(converter = UmgebungConverter.class)
+    protected String umgebung;
 
     protected String departmentId;
     protected String name;
@@ -32,7 +32,7 @@ public class Artifact implements Serializable {
                     final String name,
                     final String deploymentStatus,
                     final String deploymentNotice) {
-        this.umgebung = new Umgebung(umgebung);
+        this.umgebung = umgebung;
         this.departmentId = department;
         this.name = name;
         this.deploymentStatus = deploymentStatus;
@@ -44,11 +44,11 @@ public class Artifact implements Serializable {
         return id;
     }
 
-    public Umgebung getUmgebung() {
+    public String getUmgebung() {
         return umgebung;
     }
 
-    public void setUmgebung(Umgebung umgebung) {
+    public void setUmgebung(String umgebung) {
         this.umgebung = umgebung;
     }
 
