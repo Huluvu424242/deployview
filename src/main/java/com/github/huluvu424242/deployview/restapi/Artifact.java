@@ -1,18 +1,16 @@
 package com.github.huluvu424242.deployview.restapi;
 
-import java.io.Serializable;
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Artifact  {
+public class Artifact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    protected Long id;
+    protected long id;
 
     protected String umgebung;
 
