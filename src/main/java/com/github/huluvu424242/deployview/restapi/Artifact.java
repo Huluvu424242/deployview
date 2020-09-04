@@ -8,16 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Artifact implements Serializable {
+public class Artifact  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
 
-//    @Convert(converter = UmgebungConverter.class)
     protected String umgebung;
 
-    protected String departmentId;
+    protected String department;
     protected String name;
     protected String deploymentStatus;
     protected String deploymentNotice;
@@ -33,7 +32,7 @@ public class Artifact implements Serializable {
                     final String deploymentStatus,
                     final String deploymentNotice) {
         this.umgebung = umgebung;
-        this.departmentId = department;
+        this.department = department;
         this.name = name;
         this.deploymentStatus = deploymentStatus;
         this.deploymentNotice = deploymentNotice;
@@ -52,12 +51,12 @@ public class Artifact implements Serializable {
         this.umgebung = umgebung;
     }
 
-    public String getDepartmentId() {
-        return departmentId;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     public String getName() {
