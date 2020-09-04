@@ -1,17 +1,18 @@
 package com.github.huluvu424242.deployview.restapi;
 
+import java.io.Serializable;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name = "artifact")
-public class Artifact {
+@Entity
+public class Artifact implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    protected long id;
+    protected Long id;
 
     @Convert(converter = UmgebungConverter.class)
     protected Umgebung umgebung;
@@ -22,7 +23,26 @@ public class Artifact {
     protected String deploymentNotice;
 
 
-    public long getId(){ return id;}
+    public Artifact() {
+
+    }
+
+    public Artifact(final String umgebung,
+                    final String department,
+                    final String name,
+                    final String deploymentStatus,
+                    final String deploymentNotice) {
+        this.umgebung = new Umgebung(umgebung);
+        this.departmentId = department;
+        this.name = name;
+        this.deploymentStatus = deploymentStatus;
+        this.deploymentNotice = deploymentNotice;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
 
     public Umgebung getUmgebung() {
         return umgebung;
