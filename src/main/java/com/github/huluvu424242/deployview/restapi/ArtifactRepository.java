@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(collectionResourceRel = "artifacts", path = "artifacts")
+//@RepositoryRestResource(collectionResourceRel = "artifacts", path = "artifacts")
 public interface ArtifactRepository extends CrudRepository<Artifact, Long> {
 
     List<Artifact> findByUmgebung(String umgebung);
