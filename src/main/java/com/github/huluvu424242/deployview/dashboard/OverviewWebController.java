@@ -17,9 +17,6 @@ public class OverviewWebController {
     @Autowired
     protected DashboardService dashboardService;
 
-    @Autowired
-    protected ArtifactRepository artifactRepository;
-
     @ModelAttribute("allUmgebungen")
     public List<Umgebung> populateUmgebungen() {
         return this.dashboardService.listUmgebungen();
@@ -38,14 +35,10 @@ public class OverviewWebController {
 
     @GetMapping("/delete/{umgebung}/{department}/{artifact}")
     public String deleteArtifact(
-            @PathVariable(name = "umgebung") String umgebungId,
-            @PathVariable(name = "department") String departmentId,
+            @PathVariable(name = "umgebung") String umgebung,
+            @PathVariable(name = "department") String department,
             @PathVariable(name = "artifact") String artifactName) {
-        System.out.println("1####################################################################################");
-        final long artifactId = artifactRepository.findByKey(new Umgebung(umgebungId), departmentId, artifactName);
-        System.out.println("2 delete"+artifactId);
-        artifactRepository.deleteById(artifactId);
-        System.out.println("3####################################################################################");
+        this.dashboardService.deleteArtifact(umgebung,department,artifactName);
         return "redirect:/overview";
     }
 

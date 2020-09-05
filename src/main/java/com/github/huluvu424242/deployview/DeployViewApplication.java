@@ -7,8 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DeployViewApplication {
 
 	public static void main(String[] args) {
-// Benötigt Entwickler wenn der Restart nervt
-//		System.setProperty("spring.devtools.restart.enabled", "false");
 		SpringApplication.run(DeployViewApplication.class, args);
 	}
 

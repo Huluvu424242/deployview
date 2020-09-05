@@ -21,7 +21,14 @@ public class DashboardService {
 
 
     public Iterable<Artifact> listArtifacts() {
-        return this.artifactRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+        return this.artifactRepository.findAll();
     }
 
+    public void deleteArtifact (final String umgebung, final String department, final String artifactName) {
+        System.out.println("1####################################################################################");
+        final long artifactId = artifactRepository.findByKey(umgebung, department, artifactName);
+        System.out.println("2 delete" + artifactId);
+        artifactRepository.deleteById(artifactId);
+        System.out.println("3####################################################################################");
+    }
 }
