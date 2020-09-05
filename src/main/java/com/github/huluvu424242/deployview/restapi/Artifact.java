@@ -14,11 +14,22 @@ public class Artifact {
     protected long id;
 
     protected String umgebung;
-
     protected String department;
     protected String name;
     protected String deploymentStatus;
     protected String deploymentNotice;
+
+    public Artifact(){
+
+    }
+
+    public Artifact( final String umgebung, final String department, final String name, final String deploymentStatus, final String deploymentNotice){
+        this.umgebung=umgebung;
+        this.department=department;
+        this.name=name;
+        this.deploymentStatus=deploymentStatus;
+        this.deploymentNotice=deploymentNotice;
+    }
 
 
     public long getId(){ return id;}
