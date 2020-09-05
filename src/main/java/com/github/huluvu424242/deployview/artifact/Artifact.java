@@ -8,8 +8,14 @@ import javax.persistence.Id;
 @Entity
 public class Artifact {
 
+    /**
+     * Die aktuell höchste vergebene Id steht in:
+     * NEXT_VAL
+     * FROM HIBERNATE_SEQUENCES
+     * WHERE SEQUENCE_NAME ='default'
+     */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     protected long id;
 
     protected String umgebung;
