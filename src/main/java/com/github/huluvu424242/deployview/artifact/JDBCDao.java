@@ -14,5 +14,8 @@ public class JDBCDao {
         return (Long) jdbcTemplate.queryForObject("select next_val from hibernate_sequences where sequence_name ='default'", Long.class);
     }
 
+    public int updateDefaultNextVal(final long nextVal) {
+        return jdbcTemplate.update("update hibernate_sequences set next_val = ? where sequence_name ='default'", nextVal);
+    }
 
 }

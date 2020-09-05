@@ -16,9 +16,14 @@ public class DataService {
     @Autowired
     protected JDBCDao dao;
 
-
     public long getDefaultNextVal() {
         return dao.getDefaultNextVal();
+    }
+
+    public void importArtifacts(ExportWrapper exportWrapper) {
+        jpaRepository.deleteAll();
+        jpaRepository.saveAll(exportWrapper.getArtifacts());
+        dao.updateDefaultNextVal(exportWrapper.nextVal);
     }
 
     public void saveArtifactUpdate(String umgebung,
