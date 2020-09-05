@@ -22,7 +22,6 @@ public class ArtifactController {
             @PathVariable(name = "department") String department,
             @PathVariable(name = "artifact") String artifactName) {
         final long artifactId = artifactRepository.findByKey(umgebung, department, artifactName);
-        System.out.println("########ID: " + artifactId + "  =============");
         artifactRepository.deleteById(artifactId);
     }
 
