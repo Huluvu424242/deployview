@@ -62,6 +62,29 @@
             console.error('Error:', error);
         });
     }
+
+    function doUpload(){
+        const upload = (file) => {
+          fetch('/api/import', { // Your POST endpoint
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: file
+          }).then(
+            response => response.json()
+          ).then(
+            success => console.log(success)
+          ).catch(
+            error => console.log(error)
+          );
+        };
+
+        const input = document.getElementById('fileinput');
+        upload(input.files[0]);
+    }
+
+
 </script>
 
 <ion-app>
@@ -69,6 +92,8 @@
         <ion-header>
             <ion-toolbar color="primary">
                 <ion-title>Status Übersicht bekannter Artefakte</ion-title>
+                <input id="fileinput" type="file" />
+                <ion-button color="danger" onclick="doUpload()"></ion-button>
             </ion-toolbar>
         </ion-header>
 
