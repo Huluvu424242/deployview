@@ -2,8 +2,6 @@ package com.github.huluvu424242.deployview.dashboard;
 
 
 import com.github.huluvu424242.deployview.restapi.Artifact;
-import com.github.huluvu424242.deployview.restapi.ArtifactRepository;
-import com.github.huluvu424242.deployview.restapi.Umgebung;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +36,7 @@ public class OverviewWebController {
             @PathVariable(name = "umgebung") String umgebung,
             @PathVariable(name = "department") String department,
             @PathVariable(name = "artifact") String artifactName) {
-        this.dashboardService.deleteArtifact(umgebung,department,artifactName);
+        this.dashboardService.deleteArtifact(umgebung, department, artifactName);
         return "redirect:/overview";
     }
 
