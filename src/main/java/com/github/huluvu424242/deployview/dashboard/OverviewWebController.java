@@ -24,19 +24,10 @@ public class OverviewWebController {
         return this.dashboardService.listArtifacts();
     }
 
-
     @GetMapping("/overview")
     public String overview() {
         return "overview";
     }
-//
-//    @GetMapping("/delete/{umgebung}/{department}/{artifact}")
-//    public String deleteArtifact(
-//            @PathVariable(name = "umgebung") String umgebung,
-//            @PathVariable(name = "department") String department,
-//            @PathVariable(name = "artifact") String artifactName) {
-//        this.dashboardService.deleteArtifact(umgebung, department, artifactName);
-//        return "redirect:/overview";
-//    }
+
 
 }
