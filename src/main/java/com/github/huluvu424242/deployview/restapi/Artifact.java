@@ -6,38 +6,48 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name = "artifact")
+@Entity
 public class Artifact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected long id;
 
-    @Convert(converter = UmgebungConverter.class)
-    protected Umgebung umgebung;
-
-    protected String departmentId;
+    protected String umgebung;
+    protected String department;
     protected String name;
     protected String deploymentStatus;
     protected String deploymentNotice;
 
+    public Artifact(){
+
+    }
+
+    public Artifact( final String umgebung, final String department, final String name, final String deploymentStatus, final String deploymentNotice){
+        this.umgebung=umgebung;
+        this.department=department;
+        this.name=name;
+        this.deploymentStatus=deploymentStatus;
+        this.deploymentNotice=deploymentNotice;
+    }
+
 
     public long getId(){ return id;}
 
-    public Umgebung getUmgebung() {
+    public String getUmgebung() {
         return umgebung;
     }
 
-    public void setUmgebung(Umgebung umgebung) {
+    public void setUmgebung(String umgebung) {
         this.umgebung = umgebung;
     }
 
-    public String getDepartmentId() {
-        return departmentId;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartmentId(String department) {
+        this.department = department;
     }
 
     public String getName() {
