@@ -1,4 +1,4 @@
-package com.github.huluvu424242.deployview.restapi;
+package com.github.huluvu424242.deployview.artifact;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class RestApiController {
+public class ArtifactController {
 
 
     @Autowired

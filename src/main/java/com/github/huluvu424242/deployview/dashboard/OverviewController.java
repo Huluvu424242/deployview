@@ -1,7 +1,7 @@
 package com.github.huluvu424242.deployview.dashboard;
 
 
-import com.github.huluvu424242.deployview.restapi.Artifact;
+import com.github.huluvu424242.deployview.artifact.Artifact;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
-public class OverviewWebController {
+public class OverviewController {
 
     @Autowired
     protected DashboardService dashboardService;

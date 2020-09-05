@@ -1,4 +1,4 @@
-package com.github.huluvu424242.deployview.restapi;
+package com.github.huluvu424242.deployview.artifact;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;

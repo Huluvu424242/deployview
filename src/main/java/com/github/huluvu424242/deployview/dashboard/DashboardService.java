@@ -1,7 +1,7 @@
 package com.github.huluvu424242.deployview.dashboard;
 
-import com.github.huluvu424242.deployview.restapi.Artifact;
-import com.github.huluvu424242.deployview.restapi.ArtifactRepository;
+import com.github.huluvu424242.deployview.artifact.Artifact;
+import com.github.huluvu424242.deployview.artifact.ArtifactRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

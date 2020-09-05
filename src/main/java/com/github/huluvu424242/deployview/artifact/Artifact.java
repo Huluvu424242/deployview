@@ -1,6 +1,5 @@
-package com.github.huluvu424242.deployview.restapi;
+package com.github.huluvu424242.deployview.artifact;
 
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
