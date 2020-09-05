@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+// TODO Wäre hier ein @Configuration gut?
 public class JDBCAccessConfig {
 
     @Bean

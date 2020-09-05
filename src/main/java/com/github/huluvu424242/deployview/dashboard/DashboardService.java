@@ -1,8 +1,7 @@
 package com.github.huluvu424242.deployview.dashboard;
 
 import com.github.huluvu424242.deployview.artifact.Artifact;
-import com.github.huluvu424242.deployview.artifact.ArtifactRepository;
-import java.util.ArrayList;
+import com.github.huluvu424242.deployview.artifact.DataService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,7 @@ public class DashboardService {
 
 
     @Autowired
-    private ArtifactRepository artifactRepository;
+    private DataService dataService;
 
     protected void initArtifactList(final List<Artifact> artifacts) {
         if (artifacts.size() < 1) {
@@ -27,22 +26,16 @@ public class DashboardService {
     }
 
     public List<String> listUmgebungen() {
-        final List<String> umgebungen = this.artifactRepository.findAllUmgebungen();
+        final List<String> umgebungen = this.dataService.listUmgebungen();
         initUmgebungList(umgebungen);
         return umgebungen;
     }
 
 
     public List<Artifact> listArtifacts() {
-        final List<Artifact> artifacts = new ArrayList<>();
-        final Iterable<Artifact> iterable = this.artifactRepository.findAll();
-        iterable.forEach(artifacts::add);
+        final List<Artifact> artifacts = this.dataService.listArtifacts();
         initArtifactList(artifacts);
         return artifacts;
     }
 
-    public void deleteArtifact(final String umgebung, final String department, final String artifactName) {
-        final long artifactId = artifactRepository.findByKey(umgebung, department, artifactName);
-        artifactRepository.deleteById(artifactId);
-    }
 }

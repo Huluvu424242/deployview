@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface ArtifactRepository extends CrudRepository<Artifact, Long> {
+public interface JPARepository extends CrudRepository<Artifact, Long> {
 
     @Query(value = "SELECT a.id FROM  Artifact a WHERE a.umgebung = :umgebung and a.department = :department and a.name = :name")
     long findByKey(@Param("umgebung") String umgebung,
