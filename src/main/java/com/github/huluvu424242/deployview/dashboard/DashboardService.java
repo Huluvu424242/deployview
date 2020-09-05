@@ -42,10 +42,7 @@ public class DashboardService {
     }
 
     public void deleteArtifact(final String umgebung, final String department, final String artifactName) {
-        System.out.println("1####################################################################################");
         final long artifactId = artifactRepository.findByKey(umgebung, department, artifactName);
-        System.out.println("2 delete" + artifactId);
         artifactRepository.deleteById(artifactId);
-        System.out.println("3####################################################################################");
     }
 }
