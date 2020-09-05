@@ -15,7 +15,7 @@ public class DashboardService {
     @Autowired
     private ArtifactRepository artifactRepository;
 
-    public List<Umgebung> listUmgebungen() {
+    public List<String> listUmgebungen() {
         return this.artifactRepository.findAllUmgebungen();
     }
 

@@ -18,7 +18,7 @@ public class OverviewWebController {
     protected DashboardService dashboardService;
 
     @ModelAttribute("allUmgebungen")
-    public List<Umgebung> populateUmgebungen() {
+    public List<String> populateUmgebungen() {
         return this.dashboardService.listUmgebungen();
     }
 
