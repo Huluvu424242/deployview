@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
-public class OverviewController {
+public class WebController {
 
     @Autowired
-    protected DashboardService dashboardService;
+    protected ReadService readService;
 
     @ModelAttribute("allUmgebungen")
     public List<String> populateUmgebungen() {
-        return this.dashboardService.listUmgebungen();
+        return this.readService.listUmgebungen();
     }
 
     @ModelAttribute("allArtifacts")
     public List<Artifact> populateArtifacts() {
-        return this.dashboardService.listArtifacts();
+        return this.readService.listArtifacts();
     }
 
     @GetMapping("/overview")
