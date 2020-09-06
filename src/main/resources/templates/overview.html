@@ -64,14 +64,7 @@
     }
 
     function doExport(){
-        fetch("/api/export", {method: 'GET'})
-        .then(response => response.status)
-        .then(status => {
-            console.log('Erfolgreich exportiert, http status:', status);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+        window.location.href="/api/export";
     }
 
     function doUpload(){
