@@ -9,14 +9,6 @@
 
     <link th:href="@{/css/style.css}" rel="stylesheet"></link>
 
-    <script type="text/javascript">
-
-    function addListeners () {
-        document.querySelector(window.mysite.auswahlen[0]).addEventListener('onchange', function (evt) {
-            console.log('#'+this.value);
-        });
-    }
-</script>
 </head>
 <body>
 <script type="text/javascript">
@@ -34,7 +26,7 @@
         fetch(apiUrl, {method: 'POST'})
         .then(response => response.status)
         .then(status => {
-            console.log('Success:', status);
+            console.log('Erfolgreich gespeichert, http status:', status);
             location.reload();
         })
         .catch((error) => {
@@ -47,20 +39,67 @@
         fetch(apiUrl, {method: 'DELETE'})
         .then(response => response.status)
         .then(status => {
-            console.log('Success:', status);
+            console.log('Erfolgreich gelöscht, http status:', status);
             location.reload();
         })
         .catch((error) => {
             console.error('Error:', error);
         });
     }
+    function createArtifact( tab ){
+        const umgebung = document.getElementById( tab +'.newUmgebung' ).value;
+        const department = document.getElementById( tab +'.newDepartment' ).value;
+        const artifactname = document.getElementById( tab +'.newArtifactName' ).value;
+        const apiUrl = '/api/' + umgebung +'/' + department +'/'+ artifactname;
+        console.log('PUT ' + apiUrl );
+        fetch(apiUrl, {method: 'PUT'})
+        .then(response => response.status)
+        .then(status => {
+            console.log('Erfolgreich angelegt, http status:', status);
+            location.reload();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
+    function doExport(){
+        window.location.href="/api/export.json";
+    }
+
+    function doUpload(){
+        const upload = (file) => {
+          fetch('/api/import', { // Your POST endpoint
+            method: 'POST',
+            body: file
+          }).then(
+            response => response.json()
+          ).then( success => {
+            console.log(success);
+            location.reload();
+          }).catch(
+            error => console.log(error)
+          );
+        };
+
+        const input = document.getElementById('fileinput').firstElementChild;
+        upload(input.files[0]);
+    }
+
+
 </script>
 
-<!--<ion-app>-->
-<!--    <ion-page>-->
+<ion-app>
+
         <ion-header>
             <ion-toolbar color="primary">
+
                 <ion-title>Status Übersicht bekannter Artefakte</ion-title>
+                <ion-buttons slot="secondary">
+                    <ion-button size="small" shape="round" color="light" onclick="doExport()">Exportieren</ion-button>
+                    <ion-button size="small" shape="round" color="light" onclick="doUpload()">Importieren</ion-button>
+                    <ion-input id="fileinput" type="file" />
+                </ion-buttons>
             </ion-toolbar>
         </ion-header>
 
@@ -68,20 +107,55 @@
 
             <ion-tabs>
 
+                <ion-router id="myrouter" useHash='false'>
+                    <ion-route-redirect from="/overview/blah" to="/TEST"></ion-route-redirect>
+                    <ion-route component="tabs">
+                        <!--/*/ <th:block th:each="umgebung : ${allUmgebungen}"> /*/-->
+                        <ion-route th:url="|/${umgebung}|" th:component="${umgebung}"/>
+                        <!--/*/ </th:block> /*/-->
+                    </ion-route>
+                </ion-router>
+
                 <!--/*/ <th:block th:each="umgebung1 : ${allUmgebungen}"> /*/-->
-                <ion-tab th:tab="${umgebung1.id}">
-                    <ion-header translucent>
+                <ion-tab th:tab="${umgebung1}">
+                    <ion-nav></ion-nav>
+                    <ion-header>
                         <ion-toolbar>
-                            <ion-title th:text="${umgebung1.id}"/>
+                            <ion-title th:text="${umgebung1}"/>
                         </ion-toolbar>
                     </ion-header>
                     <ion-content>
 
                         <div class="horizontal-cards">
-                            <!--/*/ <th:block th:each="artifact : ${allArtifacts}"> /*/-->
-                            <ion-card th:if="${artifact.umgebung.id == umgebung1.id}">
+                            <ion-card>
                                 <ion-card-header>
-                                    <ion-card-subtitle th:text="'Abteilung: '+${artifact.departmentId}"/>
+                                    <ion-card-subtitle>Anlegen</ion-card-subtitle>
+                                    <ion-card-title>Neues Artefakt</ion-card-title>
+                                </ion-card-header>
+                                <ion-card-content>
+                                    <ion-label>Umgebung:</ion-label>
+                                    <ion-input th:id="|${umgebung1}.newUmgebung|"></ion-input>
+
+                                    <ion-label>Abteilung:</ion-label>
+                                    <ion-input th:id="|${umgebung1}.newDepartment|"></ion-input>
+
+                                    <ion-label>Artefakt Name:</ion-label>
+                                    <ion-input th:id="|${umgebung1}.newArtifactName|"></ion-input>
+                                </ion-card-content>
+                                <ion-button
+                                        shape="round"
+                                        color="success"
+                                        th:attr="onclick=|createArtifact('${umgebung1}')|">
+                                    Create
+                                </ion-button>
+
+                            </ion-card>
+
+
+                            <!--/*/ <th:block th:each="artifact : ${allArtifacts}"> /*/-->
+                            <ion-card th:if="${artifact.umgebung == umgebung1}">
+                                <ion-card-header>
+                                    <ion-card-subtitle th:text="'Abteilung: '+${artifact.department}"/>
                                     <ion-card-title th:text="'Artefakt: '+${artifact.name}"/>
                                 </ion-card-header>
 
@@ -89,34 +163,25 @@
 
                                 <ion-card-content>
                                     <ion-label>Status:</ion-label>
-                                        <ion-select th:id="|${umgebung1.id}.${artifact.departmentId}.${artifact.name}|"
-                                                    th:name="|${umgebung1.id}.${artifact.departmentId}.${artifact.name}|"
+                                        <ion-select th:id="|${umgebung1}.${artifact.department}.${artifact.name}|"
+                                                    th:name="|${umgebung1}.${artifact.department}.${artifact.name}|"
                                                     th:value="${artifact.deploymentStatus}"
-                                                    ionChange="alert('Hallo')"
-                                                    onchange="alert('Hallo')"
-                                                    onselectionchanged="alert('Hallo')"
-
                                         >
                                             <ion-select-option value="DEPLOYMENT">Deployment</ion-select-option>
                                             <ion-select-option value="OFFLINE">Offline</ion-select-option>
                                             <ion-select-option value="WORKING">Working</ion-select-option>
-                                            <script  th:inline="javascript">
+                                            <ion-select-option value="UNBEKANNT">Unbekannt</ion-select-option>
+
+                                <script  th:inline="javascript">
                                  /*<![CDATA[*/
                                      /*[+
 
                                      ( function(){
-                                        var customAlertSelect = document.getElementById([[${umgebung1.id}]] +'.' + [[${artifact.departmentId}]] + '.' + [[${artifact.name}]]);
-                                        window.mysite.auswahlen.push([[${umgebung1.id}]] +'.' + [[${artifact.departmentId}]] + '.' + [[${artifact.name}]]);
-
-
-                                        customAlertSelect.ionChange= function(){ alert('Hallo2');}
-                                        customAlertSelect.ionChange!= function(){ alert('Hallo1');}
-
-                                        window.mysite.interfaces.push(customAlertSelect);
-                                        var customAlertOptions = {
-                                          header: 'Pizza Toppings',
-                                          subHeader: 'Select your toppings',
-                                          message: '$1.00 per topping',
+                                        const customAlertSelect = document.getElementById([[${umgebung1}]] +'.' + [[${artifact.department}]] + '.' + [[${artifact.name}]]);
+                                        const customAlertOptions = {
+                                          header: 'Artefakt Status',
+                                          subHeader: 'Mögliche Auswahlen',
+                                          message: 'Nur eine Auswahl möglich',
                                           buttons: [{
                                                 text: 'Delete',
                                                 role: 'destructive',
@@ -135,12 +200,12 @@
                                         </ion-select>
                                     <ion-button
                                             shape="round" color="danger"
-                                            th:attr="onclick=|deleteArtifact('${umgebung1.id}','${artifact.departmentId}','${artifact.name}')|">
+                                            th:attr="onclick=|deleteArtifact('${umgebung1}','${artifact.department}','${artifact.name}')|">
                                         DELETE
                                     </ion-button>
                                     <ion-button
                                             shape="round" color="success"
-                                            th:attr="onclick=|saveStatus('${umgebung1.id}','${artifact.departmentId}','${artifact.name}', '@{/save/{umgebung}/{department}/{name}(umgebung=${umgebung1.id},department=${artifact.departmentId},name=${artifact.name})}')|">
+                                            th:attr="onclick=|saveStatus('${umgebung1}','${artifact.department}','${artifact.name}', '@{/save/{umgebung}/{department}/{name}(umgebung=${umgebung1},department=${artifact.department},name=${artifact.name})}')|">
                                         SAVE
                                     </ion-button>
 
@@ -156,26 +221,19 @@
                 <ion-tab-bar slot="top">
 
                     <!--/*/ <th:block th:each="umgebung2 : ${allUmgebungen}"> /*/-->
-                    <ion-tab-button th:tab="${umgebung2.id}">
+                    <ion-tab-button th:tab="${umgebung2}">
                         <ion-icon name="calendar"></ion-icon>
-                        <ion-label th:text="${umgebung2.id}"/>
-                        <ion-badge>6</ion-badge>
+                        <ion-label th:text="${umgebung2}"/>
+<!--                        <ion-badge>0</ion-badge>-->
                     </ion-tab-button>
                     <!--/*/ </th:block> /*/-->
                 </ion-tab-bar>
 
-<!--                <script type="text/javascript">-->
-<!--                    window.onload = function(){-->
-<!--                        setTimeout(function(){-->
-<!--                            addListeners();-->
-<!--                        }, 2000);-->
-<!--                    }-->
-<!--                </script>-->
             </ion-tabs>
 
         </ion-content>
-<!--    </ion-page>-->
-<!--</ion-app>-->
+
+</ion-app>
 
 
 </body>
