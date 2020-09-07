@@ -62,13 +62,44 @@
             console.error('Error:', error);
         });
     }
+
+    function doExport(){
+        window.location.href="/api/export.json";
+    }
+
+    function doUpload(){
+        const upload = (file) => {
+          fetch('/api/import', { // Your POST endpoint
+            method: 'POST',
+            body: file
+          }).then(
+            response => response.json()
+          ).then( success => {
+            console.log(success);
+            location.reload();
+          }).catch(
+            error => console.log(error)
+          );
+        };
+
+        const input = document.getElementById('fileinput').firstElementChild;
+        upload(input.files[0]);
+    }
+
+
 </script>
 
 <ion-app>
 
         <ion-header>
             <ion-toolbar color="primary">
+
                 <ion-title>Status Übersicht bekannter Artefakte</ion-title>
+                <ion-buttons slot="secondary">
+                    <ion-button size="small" shape="round" color="light" onclick="doExport()">Exportieren</ion-button>
+                    <ion-button size="small" shape="round" color="light" onclick="doUpload()">Importieren</ion-button>
+                    <ion-input id="fileinput" type="file" />
+                </ion-buttons>
             </ion-toolbar>
         </ion-header>
 
