@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.Charset;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -23,6 +24,16 @@ public class RESTController {
 
     @Autowired
     protected DataService dataService;
+
+    @GetMapping("/api/artifacts")
+    public List<Artifact> listAllArtifacts(){
+        return dataService.listArtifacts();
+    }
+
+    @GetMapping("/api/umgebungen")
+    public List<String> listAllEnvironments(){
+        return dataService.listUmgebungen();
+    }
 
     @PostMapping("/api/import")
     public ResponseEntity<ExportWrapper> importArtifacts(@RequestBody ExportWrapper exportWrapper) {
