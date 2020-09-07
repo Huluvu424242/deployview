@@ -3,15 +3,7 @@ package com.github.huluvu424242.deployview.artifact;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.StringReader;
 import java.nio.charset.Charset;
-import javax.servlet.http.HttpServletResponse;
-import jdk.jfr.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -23,9 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 @RestController
 public class RESTController {
@@ -41,8 +31,8 @@ public class RESTController {
     }
 
     @GetMapping("/api/export.json")
-    public ResponseEntity<Resource> exportArtifactsAsJSONFile () throws JsonProcessingException {
-        final ExportWrapper exportWrapper =  new ExportWrapper(dataService.listArtifacts(), dataService.getDefaultNextVal());
+    public ResponseEntity<Resource> exportArtifactsAsJSONFile() throws JsonProcessingException {
+        final ExportWrapper exportWrapper = new ExportWrapper(dataService.listArtifacts(), dataService.getDefaultNextVal());
         final ObjectMapper objectMapper = new ObjectMapper();
         final String objectAsString = objectMapper.writeValueAsString(exportWrapper);
         final byte[] bytes = objectAsString.getBytes(Charset.forName("UTF-8"));
