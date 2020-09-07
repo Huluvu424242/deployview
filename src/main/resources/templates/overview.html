@@ -71,9 +71,6 @@
         const upload = (file) => {
           fetch('/api/import', { // Your POST endpoint
             method: 'POST',
-            headers: {
-              "Content-Type": "application/json"
-            },
             body: file
           }).then(
             response => response.json()

@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.StringReader;
+import java.nio.charset.Charset;
 import javax.servlet.http.HttpServletResponse;
 import jdk.jfr.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class RESTController {
     @Autowired
     protected DataService dataService;
 
-    @PostMapping("/api/import" )
+    @PostMapping("/api/import")
     public ResponseEntity<ExportWrapper> importArtifacts(@RequestBody ExportWrapper exportWrapper) {
         dataService.importArtifacts(exportWrapper);
         return ResponseEntity.ok(exportWrapper);
@@ -44,10 +45,11 @@ public class RESTController {
         final ExportWrapper exportWrapper =  new ExportWrapper(dataService.listArtifacts(), dataService.getDefaultNextVal());
         final ObjectMapper objectMapper = new ObjectMapper();
         final String objectAsString = objectMapper.writeValueAsString(exportWrapper);
+        final byte[] bytes = objectAsString.getBytes(Charset.forName("UTF-8"));
 
-        final InputStreamResource resource = new InputStreamResource(new ByteArrayInputStream(objectAsString.getBytes()));
+        final InputStreamResource resource = new InputStreamResource(new ByteArrayInputStream(bytes));
         return ResponseEntity.ok()
-                .contentLength(objectAsString.length())
+                .contentLength(bytes.length)
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(resource);
     }
