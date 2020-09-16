@@ -67,7 +67,7 @@ public class DataService {
     }
 
     public void deleteArtifact(final String umgebung, final String department, final String artifactName) {
-        final long artifactId = jpaRepository.findByKey(umgebung, department, artifactName);
-        jpaRepository.deleteById(artifactId);
+//        final long artifactId = jpaRepository.findByKey(umgebung, department, artifactName);
+        jpaRepository.deleteByKey(umgebung,department,artifactName);
     }
 }
